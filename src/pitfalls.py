@@ -65,8 +65,8 @@ def percent_vs_points() -> None:
 
 
 def small_samples() -> None:
-    cases = [("Channel A\n2 sales / 3 leads", 2, 3), ("Channel B\n20 sales / 30 leads", 20, 30),
-             ("Channel C\n200 sales / 300 leads", 200, 300)]
+    cases = [("New TikTok campaign\n1 sale / 10 leads", 1, 10), ("Website form\n10 sales / 100 leads", 10, 100),
+             ("Instagram\n100 sales / 1,000 leads", 100, 1000)]
     fig, ax = plt.subplots(figsize=(16, 9))
     fig.subplots_adjust(left=0.20, right=0.92, top=0.78, bottom=0.12)
     for i, (label, s, n) in enumerate(cases[::-1]):
@@ -75,19 +75,22 @@ def small_samples() -> None:
         ax.plot(100 * s / n, i, "o", color=BLUE, ms=12, mec=SURFACE, mew=2)
         ax.text(100 * hi + 1.5, i, f"{100 * lo:.0f}% to {100 * hi:.0f}%", va="center", fontsize=12, color=INK_2)
     ax.set_yticks(range(3), [c[0] for c in cases[::-1]], fontsize=12)
-    ax.set_xlim(0, 110)
-    ax.set_xticks(range(0, 101, 20), [f"{t}%" for t in range(0, 101, 20)])
+    ax.set_xlim(0, 50)
+    ax.set_xticks(range(0, 51, 10), [f"{t}%" for t in range(0, 51, 10)])
     ax.grid(axis="x", color=GRID)
     ax.set_axisbelow(True)
     ax.set_xlabel("Lead-to-sale conversion with 95% interval (Wilson)")
-    headline(fig, "All three convert at 67%. Only one of them tells you much.",
-             "With 3 leads the true rate could be anywhere from 21% to 94%. The interval shrinks as the sample grows.")
+    label, s, n = cases[0]
+    lo, hi = wilson(s, n)
+    headline(fig, f"All three convert at {100 * s / n:.0f}%. Only one of them tells you much.",
+             f"With {n} leads the true rate could be anywhere from {100 * lo:.0f}% to {100 * hi:.0f}%. "
+             "The interval shrinks as the sample grows.")
     save(fig, "02_small_samples.png")
 
 
 def simpson() -> None:
     # (leads, sales) per brand, per period
-    data = {"Brand X": [(1000, 50), (2000, 120)], "Brand Y": [(200, 30), (100, 16)]}
+    data = {"Instagram": [(1000, 50), (2000, 120)], "Call center": [(200, 30), (100, 16)]}
     total = [tuple(sum(v) for v in zip(*(d[p] for d in data.values()))) for p in (0, 1)]
     groups = {**data, "Total": total}
     fig, axes = plt.subplots(1, 3, figsize=(16, 9), sharey=True)
@@ -105,8 +108,8 @@ def simpson() -> None:
         ax.spines["left"].set_visible(False)
         ax.set_ylim(-2.2, 19)
         ax.tick_params(axis="x", labelsize=13)
-    headline(fig, "Each brand converts better. The total converts worse.",
-             "Simpson's paradox: the mix moved toward Brand X, which has a lower rate. Always check the segments.")
+    headline(fig, "Each channel converts better. The total converts worse.",
+             "Simpson's paradox: the mix moved toward Instagram, which has a lower rate. Always check the segments.")
     save(fig, "03_simpson.png")
 
 

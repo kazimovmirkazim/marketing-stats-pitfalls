@@ -16,12 +16,12 @@ From 2% to 3% is **+1 percentage point** and **+50%**. Say which one you mean. I
 ### 2. Small samples
 ![Small samples](images/02_small_samples.png)
 
-2 out of 3 and 200 out of 300 are both 67%. The 95% Wilson interval shows how little 3 leads tell you: anything from 21% to 94%. Before ranking channels, I check how many leads sit behind each rate.
+1 out of 10, 10 out of 100 and 100 out of 1,000 are all 10%. The 95% Wilson interval shows how little 10 leads tell you: anything from 2% to 40%. Before ranking channels, I check how many leads sit behind each rate.
 
 ### 3. Simpson's paradox
 ![Simpson's paradox](images/03_simpson.png)
 
-Both brands improve, the total gets worse, because the mix moved toward the brand with the lower rate. A total is a weighted average. When it moves, I check the segments and the weights before the rates.
+Instagram and the call center both improve, the total gets worse, because the mix moved toward Instagram, the channel with the lower rate. A total is a weighted average. When it moves, I check the segments and the weights before the rates.
 
 ### 4. Mean vs median
 ![Mean vs median](images/04_mean_vs_median.png)
