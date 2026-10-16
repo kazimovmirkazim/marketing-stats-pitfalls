@@ -1,3 +1,5 @@
+![cover](images/cover.png)
+
 # Marketing Stats Pitfalls
 
 Five ways a correct number can lead to a wrong decision in marketing and sales reporting. Each one is a single chart with synthetic numbers and a short rule I use at work.
